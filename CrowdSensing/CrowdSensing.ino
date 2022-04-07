@@ -8,7 +8,6 @@
     MIT Licensed
 *************************************************/
 #include <ESP8266WiFi.h>
-#include <Adafruit_CC3000.h>
 #include <FirebaseArduino.h>
 #include <stdio.h>
 #include <string>
@@ -44,15 +43,15 @@
 
 
 /** Firebase Setup **/
-#define FIREBASE_HOST     "sensorizacaoambiente-default-rtdb.europe-west1.firebasedatabase.app"  //Set Firebase Host
-#define FIREBASE_AUTH     "gLHDJNIz1XppdgOst6b4Myc4ryLx7jpDcc4AQbVD"            //Set Firebase Auth
+#define FIREBASE_HOST     "sa-2022-tp-default-rtdb.europe-west1.firebasedatabase.app"  //Set Firebase Host
+#define FIREBASE_AUTH     "zjyztwC47DelSKAIdI4eoaXKUQ7nsxs5yCWBmGsD"            //Set Firebase Auth
 #define FIREBASE_PUSH     "ProbeData"
 
 /** WiFi Connection Data **/
 #define AP_SSID           "ap-density"
 #define AP_PASSWORD       "ap-Pa$$word"
-#define STATION_NETWORK   "Django"//"AI/IS-LAB"             //Set station network
-#define STATION_PASSWORD  "bond111g"//"gajasBoas"            //Set station password
+#define STATION_NETWORK   "Renata"//"AI/IS-LAB"             //Set station network
+#define STATION_PASSWORD  "MARTINHA"//"gajasBoas"            //Set station password
 
 /** Probe Data Struct **/
 struct probeData {
@@ -70,7 +69,7 @@ bool isConnected        = false;
 bool mqttConnected      = false;
 bool timerIsActive      = false;
 bool sendNow            = false;
-bool useMqtt            = true;  //true for MQTT (default); false for Firebase
+bool useMqtt            = false;  //true for MQTT (default); false for Firebase
 
 /** Time Variables **/
 long sightingsInterval  = 60000; //1 minute
@@ -312,9 +311,9 @@ void buildAndPublish(bool clearD){
     char payload[root.measureLength()+1];
     root.printTo((char*)payload, root.measureLength()+1);
     published = publishMqtt(TOPIC, payload);
+    Serial.println("Pass");
   } else {
-    //Firebase.push(FIREBASE_PUSH, root);
-    Firebase.pushString(FIREBASE_PUSH,"Hello World");
+    Firebase.push(FIREBASE_PUSH, root);
     published = !(Firebase.failed());
   }  
   //Handle error or success
