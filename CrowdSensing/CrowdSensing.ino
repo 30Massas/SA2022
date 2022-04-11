@@ -10,6 +10,8 @@
 #include <ESP8266WiFi.h>
 #include <FirebaseArduino.h>
 #include <stdio.h>
+#include <ctime>
+#include <iostream>
 #include <string>
 #include <PubSubClient.h>
 #include "user_interface.h"
@@ -50,14 +52,15 @@
 /** WiFi Connection Data **/
 #define AP_SSID           "ap-density"
 #define AP_PASSWORD       "ap-Pa$$word"
-#define STATION_NETWORK   "Renata"//"AI/IS-LAB"             //Set station network
-#define STATION_PASSWORD  "MARTINHA"//"gajasBoas"            //Set station password
+#define STATION_NETWORK   "Casa Pereira 2.4GHz"//"AI/IS-LAB"             //Set station network
+#define STATION_PASSWORD  "pereira1866"//"gajasBoas"           //Set station password
 
 /** Probe Data Struct **/
 struct probeData {
   String mac;
   String rssi;
   long previousMillisDetected;
+  char* date;
 } probeArray[ARRAY_SIZE];
 
 /** Control Variables **/
@@ -119,6 +122,15 @@ void setup() {
     Serial.print(" Connection to "); Serial.print(STATION_NETWORK);
     Serial.println(" failed! Board will only work as an AP......");
   }
+
+  // Time configuration
+  configTime(1 * 3600, 0, "pool.ntp.org", "time.nist.gov");
+  Serial.println("\nWaiting for time");
+  while (!time(nullptr)) {
+    Serial.print(".");
+    delay(500);
+  }
+  Serial.println("");
 
   //Setup the MQTT/Firebase Connection
   if(useMqtt){
@@ -208,10 +220,13 @@ void onProbeRequestCaptureData(const WiFiEventSoftAPModeProbeRequestReceived& ev
     if(newSighting(evt)){
       probeArray[currIndex].mac = macToString(evt.mac);
       probeArray[currIndex].rssi = evt.rssi;
-      probeArray[currIndex++].previousMillisDetected = millis();
+      probeArray[currIndex].previousMillisDetected = millis();
+      time_t now = time(0);
+      probeArray[currIndex++].date = ctime(&now);
     }
   } else{
-    Serial.println(F("*** Array Limit Achieved!! Send and clear it to process more probe requests! ***"));    
+    Serial.println(F("*** Array Limit Achieved!! Send and clear it to process more probe requests! ***"));
+    sendNow = true;  
   }
 }
 
@@ -305,6 +320,7 @@ void buildAndPublish(bool clearD){
     probe["mac"] = probeArray[i].mac;
     probe["rssi"] = probeArray[i].rssi;
     probe["previousMillisDetected"] = probeArray[i].previousMillisDetected;
+    probe["date"] = probeArray[i].date;
   }
   //Push JSON
   if(useMqtt){
@@ -339,6 +355,7 @@ void clearData(){
     probeArray[i].mac = "";
     probeArray[i].rssi = "";
     probeArray[i].previousMillisDetected = 0;
+    probeArray[i].date = "";
   }
   currIndex = 0;
   Serial.println(F("*** Probe Data successfully cleared! ***"));
