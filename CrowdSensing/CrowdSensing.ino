@@ -52,8 +52,8 @@
 /** WiFi Connection Data **/
 #define AP_SSID           "ap-density"
 #define AP_PASSWORD       "ap-Pa$$word"
-#define STATION_NETWORK   "Casa Pereira 2.4GHz"//"AI/IS-LAB"             //Set station network
-#define STATION_PASSWORD  "pereira1866"//"gajasBoas"           //Set station password
+#define STATION_NETWORK   "GOTA"//"AI/IS-LAB"             //Set station network
+#define STATION_PASSWORD  "Useamascara"//"gajasBoas"           //Set station password
 
 /** Probe Data Struct **/
 struct probeData {
@@ -408,18 +408,23 @@ void stopTimer(){
 bool newSighting(const WiFiEventSoftAPModeProbeRequestReceived& evt){
   String mac = macToString(evt.mac);
   long currTime = millis();
-  //start by the end as array is ordered - new sightings are at the end - break as soon as it finds mac at the list
-  for(int i = currIndex-1; i>=0; i--){
-    //if mac has already been captured
-    if(mac.equals(probeArray[i].mac)){
-      //lets check if enough time has passed (sightingsInterval milliseconds since last sighting)
-      if(currTime-probeArray[i].previousMillisDetected < sightingsInterval){
-        return false;
-      }      
-      break;
-    }
+  if (evt.rssi <= (-80)){
+    return false;
   }
-  return true;
+  else{
+    //start by the end as array is ordered - new sightings are at the end - break as soon as it finds mac at the list
+    for(int i = currIndex-1; i>=0; i--){
+      //if mac has already been captured
+      if(mac.equals(probeArray[i].mac)){
+        //lets check if enough time has passed (sightingsInterval milliseconds since last sighting)
+        if(currTime-probeArray[i].previousMillisDetected < sightingsInterval){
+          return false;
+        }      
+        break;
+      }
+    }
+    return true;
+  }
 }
 
 void printProbeArray(){
