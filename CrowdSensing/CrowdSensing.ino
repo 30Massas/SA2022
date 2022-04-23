@@ -53,7 +53,7 @@
 #define AP_SSID           "ap-density"
 #define AP_PASSWORD       "ap-Pa$$word"
 #define STATION_NETWORK   "GOTA"//"AI/IS-LAB"             //Set station network
-#define STATION_PASSWORD  "Useamascara"//"gajasBoas"           //Set station password
+#define STATION_PASSWORD  "Beijododiabo"//"gajasBoas"           //Set station password
 
 /** Probe Data Struct **/
 struct probeData {
