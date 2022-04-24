@@ -10,19 +10,35 @@
         android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#03A9F4"
         android:text="Register"
         android:translationX="150dp"
         android:translationY="300dp"
+        app:iconTint="@color/black"
         tools:layout_editor_absoluteX="152dp"
         tools:layout_editor_absoluteY="298dp" />
 
     <Button
         android:id="@+id/login"
         android:layout_width="106dp"
-        android:layout_height="44dp"
+        android:layout_height="48dp"
         android:text="Login"
+        android:backgroundTint="#03A9F4"
         android:translationX="152dp"
         android:translationY="400dp"
         tools:layout_editor_absoluteX="152dp"
         tools:layout_editor_absoluteY="366dp" />
+
+    <TextView
+        android:id="@+id/titleApp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/aclonica"
+        android:text="Ocupação do Gota"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#03A9F4"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:translationX="35dp"
+        android:translationY="200dp" />
 </RelativeLayout>
