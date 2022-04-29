@@ -8,13 +8,35 @@
     android:padding="10dp">
 
     <EditText
+        android:id="@+id/display_name"
+        android:layout_width="392dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="100dp"
+        android:layout_above="@+id/name"
+        android:hint="display name"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:translationY="130dp" />
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="392dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="100dp"
+        android:hint="full name"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:translationY="20dp" />
+
+    <EditText
         android:id="@+id/email"
         android:layout_width="392dp"
         android:layout_height="67dp"
         android:layout_marginTop="100dp"
         android:hint="email"
         android:inputType="text|textEmailAddress"
-        android:translationY="125dp" />
+        android:translationY="80dp"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/password"
@@ -23,7 +45,18 @@
         android:layout_marginTop="100dp"
         android:hint="password"
         android:inputType="text|textPassword"
-        android:translationY="200dp" />
+        android:translationY="150dp"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/course"
+        android:layout_width="392dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="100dp"
+        android:autofillHints=""
+        android:hint="curso"
+        android:inputType="textPersonName"
+        android:translationY="210dp" />
 
     <Button
         android:id="@+id/register"

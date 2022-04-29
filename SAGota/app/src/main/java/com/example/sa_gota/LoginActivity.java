@@ -30,17 +30,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        ActionBar actionBar;
-        actionBar = getSupportActionBar();
-
-        // Define ColorDrawable object and parse color
-        // using parseColor method
-        // with color hash code as its parameter
-        ColorDrawable colorDrawable
-                = new ColorDrawable(Color.parseColor("#03A9F4"));
-
-        // Set BackgroundDrawable
-        actionBar.setBackgroundDrawable(colorDrawable);
 
         email=findViewById(R.id.email);
         password=findViewById(R.id.password);

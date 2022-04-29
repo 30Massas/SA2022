@@ -5,12 +5,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,28 +32,50 @@ public class MainActivity extends AppCompatActivity {
     private Button logout;
     private DatabaseReference dataRef;
     private TextView num;
+    private Button update;
+    private ImageView menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ActionBar actionBar;
-        actionBar = getSupportActionBar();
-
-        // Define ColorDrawable object and parse color
-        // using parseColor method
-        // with color hash code as its parameter
-        ColorDrawable colorDrawable
-                = new ColorDrawable(Color.parseColor("#03A9F4"));
-
-        // Set BackgroundDrawable
-        actionBar.setBackgroundDrawable(colorDrawable);
-
         logout=findViewById(R.id.logout);
         num=(TextView) findViewById(R.id.numTotal);
+        update=findViewById(R.id.update);
+        menu=(ImageView) findViewById(R.id.dropdown_menu);
         dataRef= FirebaseDatabase.getInstance().getReference().child("ProbeData");
+        update=findViewById(R.id.update);
 
+        //updateValue();
+
+        update.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                updateValue();
+            }
+        });
+
+//        logout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                FirebaseAuth.getInstance().signOut();
+//                Toast.makeText(MainActivity.this, "Logged Out!", Toast.LENGTH_SHORT).show();
+//                startActivity(new Intent(MainActivity.this,StartActivity.class));
+//            }
+//        });
+
+        menu.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                showMenu(view);
+            }
+        });
+
+    }
+
+    private void updateValue() {
         dataRef.limitToLast(1).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -66,19 +92,38 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Number updating!", Toast.LENGTH_SHORT).show();
             }
         });
-
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                Toast.makeText(MainActivity.this, "Logged Out!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MainActivity.this,StartActivity.class));
-            }
-        });
     }
 
     private void updateCount(String count) {
         num.setText(count);
+    }
+
+    private void showMenu(View v) {
+        PopupMenu popupMenu = new PopupMenu(MainActivity.this,v);
+        popupMenu.getMenuInflater().inflate(R.menu.menu, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                if(menuItem.getItemId() == R.id.home){
+                    Toast.makeText(MainActivity.this, "Already here!", Toast.LENGTH_SHORT).show();
+                }
+                else if(menuItem.getItemId() == R.id.logout){
+                    FirebaseAuth.getInstance().signOut();
+                    Toast.makeText(MainActivity.this, "Logged Out!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this,StartActivity.class));
+                    finish();
+                }
+                else if(menuItem.getItemId() == R.id.chat){
+                    startActivity(new Intent(MainActivity.this,ChatActivity.class));
+                }else if(menuItem.getItemId() == R.id.profile){
+                    startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+                }
+                return true;
+            }
+        });
+
+        popupMenu.show();
     }
 
     @Override

@@ -10,27 +10,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class StartActivity extends AppCompatActivity {
 
     private Button register;
     private Button login;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-
-        ActionBar actionBar;
-        actionBar = getSupportActionBar();
-
-        // Define ColorDrawable object and parse color
-        // using parseColor method
-        // with color hash code as its parameter
-        ColorDrawable colorDrawable
-                = new ColorDrawable(Color.parseColor("#03A9F4"));
-
-        // Set BackgroundDrawable
-        actionBar.setBackgroundDrawable(colorDrawable);
 
         register=findViewById(R.id.register);
         login=findViewById(R.id.login);

@@ -5,10 +5,19 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/gota_agua"
-        android:label="Gota D'Água"
+        android:label="Gota D&apos;Água"
         android:roundIcon="@mipmap/gota_agua_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SAGota">
+        <activity
+            android:name=".EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChatActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />

@@ -3,10 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/luisp/Desktop/Uni/Mestrado/4oAno/2oSemestre/SI/SA/SA2022/SAGota/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2985" />
+        <entry key="..\:/Users/luisp/Desktop/Uni/Mestrado/4oAno/2oSemestre/SI/SA/SA2022/SAGota/app/src/main/res/drawable/ic_profile_icon.xml" value="0.2985" />
+        <entry key="..\:/Users/luisp/Desktop/Uni/Mestrado/4oAno/2oSemestre/SI/SA/SA2022/SAGota/app/src/main/res/layout/activity_chat.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/luisp/Desktop/Uni/Mestrado/4oAno/2oSemestre/SI/SA/SA2022/SAGota/app/src/main/res/layout/activity_edit_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/luisp/Desktop/Uni/Mestrado/4oAno/2oSemestre/SI/SA/SA2022/SAGota/app/src/main/res/layout/activity_login.xml" value="0.358695652173913" />
         <entry key="..\:/Users/luisp/Desktop/Uni/Mestrado/4oAno/2oSemestre/SI/SA/SA2022/SAGota/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/luisp/Desktop/Uni/Mestrado/4oAno/2oSemestre/SI/SA/SA2022/SAGota/app/src/main/res/layout/activity_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/luisp/Desktop/Uni/Mestrado/4oAno/2oSemestre/SI/SA/SA2022/SAGota/app/src/main/res/layout/activity_register.xml" value="0.358695652173913" />
         <entry key="..\:/Users/luisp/Desktop/Uni/Mestrado/4oAno/2oSemestre/SI/SA/SA2022/SAGota/app/src/main/res/layout/activity_start.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/luisp/Desktop/Uni/Mestrado/4oAno/2oSemestre/SI/SA/SA2022/SAGota/app/src/main/res/layout/cha.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/luisp/Desktop/Uni/Mestrado/4oAno/2oSemestre/SI/SA/SA2022/SAGota/app/src/main/res/layout/chat.xml" value="0.2807971014492754" />
+        <entry key="..\:/Users/luisp/Desktop/Uni/Mestrado/4oAno/2oSemestre/SI/SA/SA2022/SAGota/app/src/main/res/layout/message.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/luisp/Desktop/Uni/Mestrado/4oAno/2oSemestre/SI/SA/SA2022/SAGota/app/src/main/res/layout/toolbar.xml" value="0.25" />
+        <entry key="..\:/Users/luisp/Desktop/Uni/Mestrado/4oAno/2oSemestre/SI/SA/SA2022/SAGota/app/src/main/res/menu/menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/luisp/Desktop/Uni/Mestrado/4oAno/2oSemestre/SI/SA/SA2022/SAGota/app/src/main/res/menu/options.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/luisp/Desktop/Uni/Mestrado/4oAno/2oSemestre/SI/SA/SA2022/SAGota/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2985" />
         <entry key="..\:/Users/luisp/Desktop/Uni/Mestrado/4oAno/2oSemestre/SI/SA/SAGota/app/src/main/res/layout/activity_login.xml" value="0.358695652173913" />
         <entry key="..\:/Users/luisp/Desktop/Uni/Mestrado/4oAno/2oSemestre/SI/SA/SAGota/app/src/main/res/layout/activity_main.xml" value="0.25" />
