@@ -44,7 +44,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 String txt_name = full_name.getText().toString();
                 String txt_display = display_name.getText().toString();
 
-                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getEmail().split("@")[0]);
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
                 if(!(txt_name.isEmpty()) || !(txt_display.isEmpty())) {
                     ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -62,7 +62,7 @@ public class EditProfileActivity extends AppCompatActivity {
                             FirebaseAuth.getInstance().getCurrentUser().updateProfile(updates).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    Toast.makeText(EditProfileActivity.this, "Edit successful!", Toast.LENGTH_SHORT).show();
+                                    if(task.isSuccessful()) Toast.makeText(EditProfileActivity.this, "Edit successful!", Toast.LENGTH_SHORT).show();
                                 }
                             });
 

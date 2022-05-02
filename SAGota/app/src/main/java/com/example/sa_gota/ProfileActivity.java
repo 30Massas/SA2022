@@ -55,12 +55,11 @@ public class ProfileActivity extends AppCompatActivity {
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         ref = FirebaseDatabase.getInstance().getReference().child("users");
-        userEmail = user.getEmail();
 
         final TextView fullNameView = (TextView) findViewById(R.id.editName);
         final TextView displayNameView = (TextView) findViewById(R.id.editDisplay);
 
-        ref.child(userEmail.split("@")[0]).addListenerForSingleValueEvent(new ValueEventListener() {
+        ref.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 MyUser userProfile = snapshot.getValue(MyUser.class);
